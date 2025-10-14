@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My WebApp Wrapper</title>
   <style>
     body, html {
@@ -9,15 +10,20 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
+      background-color: #f8f8f8; /* لون خفيف للخلفية أثناء التحميل */
     }
     iframe {
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbz_NRgokAPRrTBmaRozMuq1TgfhY_bKv6zeDIKFcJ8EEiXUpO5HT7H69kq6AOvOyTi4/exec?page=form"></iframe>
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbz_NRgokAPRrTBmaRozMuq1TgfhY_bKv6zeDIKFcJ8EEiXUpO5HT7H69kq6AOvOyTi4/exec?page=form" 
+    scrolling="no">
+  </iframe>
 </body>
 </html>
