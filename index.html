@@ -5,7 +5,7 @@
   <title>PlanSee – Monthly Collection</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- خط جميل -->
+  <!-- خط -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CDN -->
@@ -27,35 +27,51 @@
     }
 
     .card-shadow {
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     .medal-icon {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       display: inline-block;
-      margin-left: 8px;
+      margin-left: 6px;
     }
 
     /* أنيميشن احتفال على الكارت */
     @keyframes popCard {
       0% {
         transform: scale(1);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
       }
       40% {
         transform: scale(1.05);
-        box-shadow: 0 20px 60px rgba(230, 169, 37, 0.5);
+        box-shadow: 0 26px 70px rgba(230, 169, 37, 0.6);
       }
       100% {
         transform: scale(1);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
       }
     }
 
     #main-card.celebrate {
-      animation: popCard 0.8s ease-out;
-      border: 2px solid rgba(230, 169, 37, 0.7);
+      animation: popCard 0.9s ease-out;
+      border: 2px solid rgba(230, 169, 37, 0.8);
+    }
+
+    /* أنيميشن للرقم نفسه */
+    @keyframes pulseAmount {
+      0%   { transform: scale(1); }
+      30%  { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    #total-amount.pulse {
+      animation: pulseAmount 0.9s ease-out;
+    }
+
+    .amount-number {
+      letter-spacing: 0.03em;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     }
 
     /* Confetti */
@@ -73,45 +89,56 @@
       width: 8px;
       height: 16px;
       border-radius: 2px;
-      opacity: 0.9;
+      opacity: 0.95;
       animation-name: confetti-fall;
       animation-timing-function: ease-out;
     }
 
     @keyframes confetti-fall {
       to {
-        transform: translateY(110vh) rotateZ(240deg);
+        transform: translateY(110vh) rotateZ(260deg);
         opacity: 0;
       }
     }
   </style>
 </head>
 <body class="gradient-bg flex items-center justify-center p-4 md:p-8">
-  <div id="main-card" class="bg-white rounded-3xl card-shadow max-w-4xl w-full p-8 md:p-10">
+  <div id="main-card" class="bg-white rounded-3xl card-shadow max-w-5xl w-full p-8 md:p-10">
     <!-- Header -->
-    <div class="mb-6">
-      <h2 id="card-title" class="text-lg md:text-xl font-light opacity-70">
+    <div class="mb-6 flex justify-end">
+      <h2 id="card-title" class="text-sm md:text-base font-light opacity-70">
         إجمالي تحصيل الشهر
       </h2>
     </div>
 
     <!-- Main Amount -->
-    <div class="mb-8 text-center">
+    <div class="mb-10 text-center">
       <div
         id="total-amount"
-        class="text-5xl md:text-7xl font-black tracking-tight leading-tight"
+        class="amount-number text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight"
         style="color: #e6a925;"
         data-raw="0"
       >
-        0 EGP
+        EGP 0
       </div>
     </div>
 
+    <!-- Divider -->
+    <div class="border-t border-gray-200 mb-6"></div>
+
     <!-- Top Achievers -->
-    <div class="space-y-4 pt-6 border-t border-gray-200">
+    <div class="space-y-4">
       <!-- Month -->
       <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
+            —
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="top-month-label" class="text-base md:text-lg font-light">
+            Top Achiever الشهر:
+          </span>
           <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="10" r="6" fill="#e6a925" />
@@ -120,30 +147,26 @@
             <path d="M8 15L7 22L12 19L17 22L16 15"
                   stroke="#e6a925" stroke-width="1.5" fill="none" />
           </svg>
-          <span id="top-month-label" class="text-base md:text-lg font-light">
-            Top Achiever الشهر:
-          </span>
         </div>
-        <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
-          —
-        </span>
       </div>
 
       <!-- Today -->
       <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
+            —
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="top-today-label" class="text-base md:text-lg font-light">
+            Top Achiever اليوم:
+          </span>
           <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
                   fill="#e6a925" />
           </svg>
-          <span id="top-today-label" class="text-base md:text-lg font-light">
-            Top Achiever اليوم:
-          </span>
         </div>
-        <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
-          —
-        </span>
       </div>
     </div>
 
@@ -178,16 +201,19 @@
 
     function formatAmount(value) {
       const n = Number(value) || 0;
-      return n.toLocaleString("en-EG") + " EGP";
+      // شكل زي اللي في الصورة: EGP 893,365
+      return "EGP " + n.toLocaleString("en-EG");
     }
 
+    // عدّاد ناعم (ease-out) للرقم
     function animateNumber(element, from, to, formatter) {
-      const duration = 900;
+      const duration = 1500; // 1.5 ثانية عشان الإحساس بالعداد
       const startTime = performance.now();
 
       function frame(now) {
         const progress = Math.min((now - startTime) / duration, 1);
-        const current = Math.round(from + (to - from) * progress);
+        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        const current = Math.round(from + (to - from) * eased);
         element.textContent = formatter(current);
 
         if (progress < 1) {
@@ -203,7 +229,7 @@
       if (!audio) return;
       audio.currentTime = 0;
       audio.play().catch(() => {
-        // ممكن المتصفح يمنع الصوت أول مرة لحد ما تدوسي كليك
+        // المتصفح ممكن يمنع الصوت لو مفيش كليك قبلها – عادي نتجاهل
       });
     }
 
@@ -219,20 +245,26 @@
         piece.style.left = Math.random() * 100 + "%";
         piece.style.backgroundColor =
           colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = 1.5 + Math.random() + "s";
+        piece.style.animationDuration = 1.7 + Math.random() + "s";
         piece.style.animationDelay = Math.random() * 0.4 + "s";
         layer.appendChild(piece);
       }
 
       document.body.appendChild(layer);
-      setTimeout(() => layer.remove(), 2500);
+      setTimeout(() => layer.remove(), 2600);
     }
 
     function triggerCelebration() {
       const card = document.getElementById("main-card");
+      const amountEl = document.getElementById("total-amount");
+
       card.classList.remove("celebrate");
-      void card.offsetWidth; // reflow
+      amountEl.classList.remove("pulse");
+      void card.offsetWidth;     // reflow صغير عشان نعيد الأنيميشن
+      void amountEl.offsetWidth;
+
       card.classList.add("celebrate");
+      amountEl.classList.add("pulse");
 
       playCelebrationSound();
       spawnConfetti();
@@ -242,13 +274,23 @@
       const el = document.getElementById("total-amount");
       const newNumeric = parseAmount(rawAmount);
 
-      if (lastNumericAmount === null || isNaN(newNumeric)) {
-        el.textContent = formatAmount(newNumeric);
-      } else {
+      if (lastNumericAmount === null) {
+        // أول مرة: عدّاد من 0 → القيمة + Celebration لو > 0
+        animateNumber(el, 0, newNumeric, formatAmount);
+        if (newNumeric > 0) {
+          triggerCelebration();
+        } else {
+          el.textContent = formatAmount(newNumeric);
+        }
+      } else if (!isNaN(newNumeric) && newNumeric !== lastNumericAmount) {
+        // تغيّر في الرقم
         animateNumber(el, lastNumericAmount, newNumeric, formatAmount);
         if (newNumeric > lastNumericAmount) {
           triggerCelebration();
         }
+      } else {
+        // مفيش تغيير
+        el.textContent = formatAmount(newNumeric);
       }
 
       lastNumericAmount = newNumeric;
@@ -260,13 +302,6 @@
         const res = await fetch(API_URL);
         if (!res.ok) throw new Error("API error " + res.status);
         const data = await res.json();
-
-        // شكل الداتا من Google Script:
-        // {
-        //   totalMonthCollection,
-        //   topAchieverMonth: { name, amount },
-        //   topAchieverToday: { name, amount }
-        // }
 
         updateTotalAmount(data.totalMonthCollection || 0);
 
@@ -284,9 +319,9 @@
       }
     }
 
-    // أول تحميل + كل دقيقة
+    // أول تحميل + كل 10 ثواني
     fetchFromApi();
-    setInterval(fetchFromApi, 60 * 1000);
+    setInterval(fetchFromApi, 10 * 1000);
   </script>
 </body>
 </html>
