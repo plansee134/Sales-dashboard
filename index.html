@@ -1,23 +1,292 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>My WebApp Wrapper</title>
+  <title>PlanSee – Monthly Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- خط جميل -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
+    * {
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      box-sizing: border-box;
     }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #f4d88c 0%, #e6a925 50%, #c97e1f 100%);
+    }
+
+    .card-shadow {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .medal-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    /* أنيميشن احتفال على الكارت */
+    @keyframes popCard {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      }
+      40% {
+        transform: scale(1.05);
+        box-shadow: 0 20px 60px rgba(230, 169, 37, 0.5);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    #main-card.celebrate {
+      animation: popCard 0.8s ease-out;
+      border: 2px solid rgba(230, 169, 37, 0.7);
+    }
+
+    /* Confetti */
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 50;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -12px;
+      width: 8px;
+      height: 16px;
+      border-radius: 2px;
+      opacity: 0.9;
+      animation-name: confetti-fall;
+      animation-timing-function: ease-out;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(110vh) rotateZ(240deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
-<body>
-  <iframe src="https://script.google.com/macros/s/AKfycbz_NRgokAPRrTBmaRozMuq1TgfhY_bKv6zeDIKFcJ8EEiXUpO5HT7H69kq6AOvOyTi4/exec?page=form"></iframe>
+<body class="gradient-bg flex items-center justify-center p-4 md:p-8">
+  <div id="main-card" class="bg-white rounded-3xl card-shadow max-w-4xl w-full p-8 md:p-10">
+    <!-- Header -->
+    <div class="mb-6">
+      <h2 id="card-title" class="text-lg md:text-xl font-light opacity-70">
+        إجمالي تحصيل الشهر
+      </h2>
+    </div>
+
+    <!-- Main Amount -->
+    <div class="mb-8 text-center">
+      <div
+        id="total-amount"
+        class="text-5xl md:text-7xl font-black tracking-tight leading-tight"
+        style="color: #e6a925;"
+        data-raw="0"
+      >
+        0 EGP
+      </div>
+    </div>
+
+    <!-- Top Achievers -->
+    <div class="space-y-4 pt-6 border-t border-gray-200">
+      <!-- Month -->
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="10" r="6" fill="#e6a925" />
+            <path d="M12 4L13.5 8.5L18 9L14.5 12L15.5 16.5L12 14L8.5 16.5L9.5 12L6 9L10.5 8.5L12 4Z"
+                  fill="#f4d88c" />
+            <path d="M8 15L7 22L12 19L17 22L16 15"
+                  stroke="#e6a925" stroke-width="1.5" fill="none" />
+          </svg>
+          <span id="top-month-label" class="text-base md:text-lg font-light">
+            Top Achiever الشهر:
+          </span>
+        </div>
+        <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
+          —
+        </span>
+      </div>
+
+      <!-- Today -->
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                  fill="#e6a925" />
+          </svg>
+          <span id="top-today-label" class="text-base md:text-lg font-light">
+            Top Achiever اليوم:
+          </span>
+        </div>
+        <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
+          —
+        </span>
+      </div>
+    </div>
+
+    <!-- Last updated -->
+    <div class="mt-6 text-xs md:text-sm text-gray-500 text-left">
+      <span id="last-updated">Last update: --</span>
+    </div>
+  </div>
+
+  <!-- صوت الاحتفال (تصفيق) -->
+  <audio
+    id="celebration-sound"
+    src="https://www.free-stock-music.com/music/sound-effects-library/mp3/sound-effects-library-applauding.mp3"
+    preload="auto">
+  </audio>
+
+  <script>
+    // API بتاع Google Apps Script
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbwQa92E132qjwHo9Pat29wW5MEwmA9qKB98xMTL5EpvkxY46TZGwkFxhJcPVQcPLUj48w/exec";
+
+    let lastNumericAmount = null;
+
+    function parseAmount(value) {
+      if (typeof value === "number") return value;
+      if (typeof value === "string") {
+        const numeric = value.replace(/[^\d.-]/g, "");
+        return Number(numeric) || 0;
+      }
+      return 0;
+    }
+
+    function formatAmount(value) {
+      const n = Number(value) || 0;
+      return n.toLocaleString("en-EG") + " EGP";
+    }
+
+    function animateNumber(element, from, to, formatter) {
+      const duration = 900;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const current = Math.round(from + (to - from) * progress);
+        element.textContent = formatter(current);
+
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function playCelebrationSound() {
+      const audio = document.getElementById("celebration-sound");
+      if (!audio) return;
+      audio.currentTime = 0;
+      audio.play().catch(() => {
+        // ممكن المتصفح يمنع الصوت أول مرة لحد ما تدوسي كليك
+      });
+    }
+
+    function spawnConfetti() {
+      const layer = document.createElement("div");
+      layer.className = "confetti-layer";
+
+      const colors = ["#e6a925", "#f4d88c", "#ffffff"];
+
+      for (let i = 0; i < 80; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.backgroundColor =
+          colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = 1.5 + Math.random() + "s";
+        piece.style.animationDelay = Math.random() * 0.4 + "s";
+        layer.appendChild(piece);
+      }
+
+      document.body.appendChild(layer);
+      setTimeout(() => layer.remove(), 2500);
+    }
+
+    function triggerCelebration() {
+      const card = document.getElementById("main-card");
+      card.classList.remove("celebrate");
+      void card.offsetWidth; // reflow
+      card.classList.add("celebrate");
+
+      playCelebrationSound();
+      spawnConfetti();
+    }
+
+    function updateTotalAmount(rawAmount) {
+      const el = document.getElementById("total-amount");
+      const newNumeric = parseAmount(rawAmount);
+
+      if (lastNumericAmount === null || isNaN(newNumeric)) {
+        el.textContent = formatAmount(newNumeric);
+      } else {
+        animateNumber(el, lastNumericAmount, newNumeric, formatAmount);
+        if (newNumeric > lastNumericAmount) {
+          triggerCelebration();
+        }
+      }
+
+      lastNumericAmount = newNumeric;
+      el.dataset.raw = newNumeric;
+    }
+
+    async function fetchFromApi() {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("API error " + res.status);
+        const data = await res.json();
+
+        // شكل الداتا من Google Script:
+        // {
+        //   totalMonthCollection,
+        //   topAchieverMonth: { name, amount },
+        //   topAchieverToday: { name, amount }
+        // }
+
+        updateTotalAmount(data.totalMonthCollection || 0);
+
+        document.getElementById("top-month-name").textContent =
+          (data.topAchieverMonth && data.topAchieverMonth.name) || "—";
+
+        document.getElementById("top-today-name").textContent =
+          (data.topAchieverToday && data.topAchieverToday.name) || "—";
+
+        const now = new Date();
+        document.getElementById("last-updated").textContent =
+          "Last update: " + now.toLocaleTimeString();
+      } catch (err) {
+        console.error("Error fetching API:", err);
+      }
+    }
+
+    // أول تحميل + كل دقيقة
+    fetchFromApi();
+    setInterval(fetchFromApi, 60 * 1000);
+  </script>
 </body>
 </html>
