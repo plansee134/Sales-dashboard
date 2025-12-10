@@ -100,86 +100,104 @@
         opacity: 0;
       }
     }
+
+    /* زر تفعيل الصوت */
+    #enable-sound {
+      position: absolute;
+      bottom: 18px;
+      left: 24px;
+    }
   </style>
 </head>
 <body class="gradient-bg flex items-center justify-center p-4 md:p-8">
-  <div id="main-card" class="bg-white rounded-3xl card-shadow max-w-5xl w-full p-8 md:p-10">
-    <!-- Header -->
-    <div class="mb-6 flex justify-end">
-      <h2 id="card-title" class="text-sm md:text-base font-light opacity-70">
-        إجمالي تحصيل الشهر
-      </h2>
-    </div>
-
-    <!-- Main Amount -->
-    <div class="mb-10 text-center">
-      <div
-        id="total-amount"
-        class="amount-number text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight"
-        style="color: #e6a925;"
-        data-raw="0"
-      >
-        EGP 0
+  <div class="relative max-w-5xl w-full">
+    <div id="main-card" class="bg-white rounded-3xl card-shadow w-full p-8 md:p-10">
+      <!-- Header -->
+      <div class="mb-6 flex justify-end">
+        <h2 id="card-title" class="text-sm md:text-base font-light opacity-70">
+          إجمالي تحصيل الشهر
+        </h2>
       </div>
-    </div>
 
-    <!-- Divider -->
-    <div class="border-t border-gray-200 mb-6"></div>
-
-    <!-- Top Achievers -->
-    <div class="space-y-4">
-      <!-- Month -->
-      <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
-            —
-          </span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span id="top-month-label" class="text-base md:text-lg font-light">
-            Top Achiever الشهر:
-          </span>
-          <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="10" r="6" fill="#e6a925" />
-            <path d="M12 4L13.5 8.5L18 9L14.5 12L15.5 16.5L12 14L8.5 16.5L9.5 12L6 9L10.5 8.5L12 4Z"
-                  fill="#f4d88c" />
-            <path d="M8 15L7 22L12 19L17 22L16 15"
-                  stroke="#e6a925" stroke-width="1.5" fill="none" />
-          </svg>
+      <!-- Main Amount -->
+      <div class="mb-10 text-center">
+        <div
+          id="total-amount"
+          class="amount-number text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight"
+          style="color: #e6a925;"
+          data-raw="0"
+        >
+          EGP 0
         </div>
       </div>
 
-      <!-- Today -->
-      <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
-            —
-          </span>
+      <!-- Divider -->
+      <div class="border-t border-gray-200 mb-6"></div>
+
+      <!-- Top Achievers -->
+      <div class="space-y-4">
+        <!-- Month -->
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
+              —
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="top-month-label" class="text-base md:text-lg font-light">
+              Top Achiever الشهر:
+            </span>
+            <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="10" r="6" fill="#e6a925" />
+              <path d="M12 4L13.5 8.5L18 9L14.5 12L15.5 16.5L12 14L8.5 16.5L9.5 12L6 9L10.5 8.5L12 4Z"
+                    fill="#f4d88c" />
+              <path d="M8 15L7 22L12 19L17 22L16 15"
+                    stroke="#e6a925" stroke-width="1.5" fill="none" />
+            </svg>
+          </div>
         </div>
-        <div class="flex items-center gap-2">
-          <span id="top-today-label" class="text-base md:text-lg font-light">
-            Top Achiever اليوم:
-          </span>
-          <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                  fill="#e6a925" />
-          </svg>
+
+        <!-- Today -->
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
+              —
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="top-today-label" class="text-base md:text-lg font-light">
+              Top Achiever اليوم:
+            </span>
+            <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                    fill="#e6a925" />
+            </svg>
+          </div>
         </div>
+      </div>
+
+      <!-- Last updated -->
+      <div class="mt-6 text-xs md:text-sm text-gray-500 text-left">
+        <span id="last-updated">Last update: --</span>
       </div>
     </div>
 
-    <!-- Last updated -->
-    <div class="mt-6 text-xs md:text-sm text-gray-500 text-left">
-      <span id="last-updated">Last update: --</span>
-    </div>
+    <!-- زر تفعيل الصوت -->
+    <button
+      id="enable-sound"
+      class="px-3 py-2 rounded-full bg-[#e6a925] text-white text-xs md:text-sm shadow-md hover:opacity-90 transition"
+      onclick="enableSound()"
+    >
+      🔊 تفعيل الصوت
+    </button>
   </div>
 
-  <!-- صوت الاحتفال (تصفيق) -->
+  <!-- صوت الاحتفال (حطي ملف celebration.mp3 في نفس فولدر index.html) -->
   <audio
     id="celebration-sound"
-    src="https://www.free-stock-music.com/music/sound-effects-library/mp3/sound-effects-library-applauding.mp3"
+    src="celebration.mp3"
     preload="auto">
   </audio>
 
@@ -189,6 +207,7 @@
       "https://script.google.com/macros/s/AKfycbz6RoFAAnJv01-ODGpiGNeycvK_M5VJ8LLN6DRgTFAK2bNUllNEn2V51ejjyjnjKFYBOg/exec";
 
     let lastNumericAmount = null;
+    let soundEnabled = false;
 
     function parseAmount(value) {
       if (typeof value === "number") return value;
@@ -201,13 +220,12 @@
 
     function formatAmount(value) {
       const n = Number(value) || 0;
-      // شكل زي اللي في الصورة: EGP 893,365
       return "EGP " + n.toLocaleString("en-EG");
     }
 
     // عدّاد ناعم (ease-out) للرقم
     function animateNumber(element, from, to, formatter) {
-      const duration = 1500; // 1.5 ثانية عشان الإحساس بالعداد
+      const duration = 1500;
       const startTime = performance.now();
 
       function frame(now) {
@@ -225,12 +243,11 @@
     }
 
     function playCelebrationSound() {
+      if (!soundEnabled) return; // مش هنحاول نشغّل صوت لو المستخدم ما فعّلوش
       const audio = document.getElementById("celebration-sound");
       if (!audio) return;
       audio.currentTime = 0;
-      audio.play().catch(() => {
-        // المتصفح ممكن يمنع الصوت لو مفيش كليك قبلها – عادي نتجاهل
-      });
+      audio.play().catch(() => {});
     }
 
     function spawnConfetti() {
@@ -260,7 +277,7 @@
 
       card.classList.remove("celebrate");
       amountEl.classList.remove("pulse");
-      void card.offsetWidth;     // reflow صغير عشان نعيد الأنيميشن
+      void card.offsetWidth;
       void amountEl.offsetWidth;
 
       card.classList.add("celebrate");
@@ -275,7 +292,7 @@
       const newNumeric = parseAmount(rawAmount);
 
       if (lastNumericAmount === null) {
-        // أول مرة: عدّاد من 0 → القيمة + Celebration لو > 0
+        // أول مرة
         animateNumber(el, 0, newNumeric, formatAmount);
         if (newNumeric > 0) {
           triggerCelebration();
@@ -289,7 +306,6 @@
           triggerCelebration();
         }
       } else {
-        // مفيش تغيير
         el.textContent = formatAmount(newNumeric);
       }
 
@@ -317,6 +333,27 @@
       } catch (err) {
         console.error("Error fetching API:", err);
       }
+    }
+
+    // تفعيل الصوت بعد أول كليك على الزر
+    function enableSound() {
+      const audio = document.getElementById("celebration-sound");
+      const btn = document.getElementById("enable-sound");
+      if (!audio) return;
+
+      soundEnabled = true;
+
+      // حيلة: نشغل الصوت muted مرة واحدة عشان المتصفح يسمح بعد كده
+      audio.muted = true;
+      audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.muted = false;
+      }).catch(() => {
+        // لو فشل برده مش مشكلة، الصوت هيفضل معطّل لحد ما المتصفح يسمح
+      });
+
+      btn.style.display = "none";
     }
 
     // أول تحميل + كل 10 ثواني
