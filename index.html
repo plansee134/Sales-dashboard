@@ -109,89 +109,93 @@
     }
   </style>
 </head>
-<body class="gradient-bg flex items-center justify-center p-4 md:p-8">
-  <div class="relative max-w-5xl w-full">
-    <div id="main-card" class="bg-white rounded-3xl card-shadow w-full p-8 md:p-10">
-      <!-- Header -->
-      <div class="mb-6 flex justify-end">
-        <h2 id="card-title" class="text-sm md:text-base font-light opacity-70">
-          إجمالي تحصيل الشهر
-        </h2>
-      </div>
 
-      <!-- Main Amount -->
-      <div class="mb-10 text-center">
-        <div
-          id="total-amount"
-          class="amount-number text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight"
-          style="color: #e6a925;"
-          data-raw="0"
-        >
-          EGP 0
+<body class="gradient-bg">
+  <!-- Wrapper عشان يظبط التمركز على كل الأجهزة (خاصة التلفزيون) -->
+  <div class="min-h-screen flex items-center p-4 md:p-8">
+    <div class="relative w-full max-w-5xl mx-auto">
+      <div id="main-card" class="bg-white rounded-3xl card-shadow w-full p-8 md:p-10">
+        <!-- Header -->
+        <div class="mb-6 flex justify-end">
+          <h2 id="card-title" class="text-sm md:text-base font-light opacity-70">
+            إجمالي تحصيل الشهر
+          </h2>
         </div>
-      </div>
 
-      <!-- Divider -->
-      <div class="border-t border-gray-200 mb-6"></div>
-
-      <!-- Top Achievers -->
-      <div class="space-y-4">
-        <!-- Month -->
-        <div class="flex items-center justify-between gap-4">
-          <div class="flex items-center gap-2">
-            <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
-              —
-            </span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span id="top-month-label" class="text-base md:text-lg font-light">
-              Top Achiever الشهر:
-            </span>
-            <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="10" r="6" fill="#e6a925" />
-              <path d="M12 4L13.5 8.5L18 9L14.5 12L15.5 16.5L12 14L8.5 16.5L9.5 12L6 9L10.5 8.5L12 4Z"
-                    fill="#f4d88c" />
-              <path d="M8 15L7 22L12 19L17 22L16 15"
-                    stroke="#e6a925" stroke-width="1.5" fill="none" />
-            </svg>
+        <!-- Main Amount -->
+        <div class="mb-10 text-center">
+          <div
+            id="total-amount"
+            class="amount-number text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight"
+            style="color: #e6a925;"
+            data-raw="0"
+          >
+            EGP 0
           </div>
         </div>
 
-        <!-- Today -->
-        <div class="flex items-center justify-between gap-4">
-          <div class="flex items-center gap-2">
-            <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
-              —
-            </span>
+        <!-- Divider -->
+        <div class="border-t border-gray-200 mb-6"></div>
+
+        <!-- Top Achievers -->
+        <div class="space-y-4">
+          <!-- Month -->
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+              <span id="top-month-name" class="text-base md:text-lg font-semibold text-right">
+                —
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="top-month-label" class="text-base md:text-lg font-light">
+                Top Achiever الشهر:
+              </span>
+              <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="10" r="6" fill="#e6a925" />
+                <path d="M12 4L13.5 8.5L18 9L14.5 12L15.5 16.5L12 14L8.5 16.5L9.5 12L6 9L10.5 8.5L12 4Z"
+                      fill="#f4d88c" />
+                <path d="M8 15L7 22L12 19L17 22L16 15"
+                      stroke="#e6a925" stroke-width="1.5" fill="none" />
+              </svg>
+            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <span id="top-today-label" class="text-base md:text-lg font-light">
-              Top Achiever اليوم:
-            </span>
-            <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                    fill="#e6a925" />
-            </svg>
+
+          <!-- Today -->
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+              <span id="top-today-name" class="text-base md:text-lg font-semibold text-right">
+                —
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="top-today-label" class="text-base md:text-lg font-light">
+                Top Achiever اليوم:
+              </span>
+              <svg class="medal-icon" viewBox="0 0 24 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                      fill="#e6a925" />
+              </svg>
+            </div>
           </div>
+        </div>
+
+        <!-- Last updated -->
+        <div class="mt-6 text-xs md:text-sm text-gray-500 text-left">
+          <span id="last-updated">Last update: --</span>
         </div>
       </div>
 
-      <!-- Last updated -->
-      <div class="mt-6 text-xs md:text-sm text-gray-500 text-left">
-        <span id="last-updated">Last update: --</span>
-      </div>
+      <!-- زر تفعيل الصوت -->
+      <button
+        id="enable-sound"
+        class="px-3 py-2 rounded-full bg-[#e6a925] text-white text-xs md:text-sm shadow-md hover:opacity-90 transition"
+        onclick="enableSound()"
+      >
+        🔊 تفعيل الصوت
+      </button>
     </div>
-
-    <!-- زر تفعيل الصوت -->
-    <button
-      id="enable-sound"
-      class="px-3 py-2 rounded-full bg-[#e6a925] text-white text-xs md:text-sm shadow-md hover:opacity-90 transition"
-      onclick="enableSound()"
-    >
-      🔊 تفعيل الصوت
-    </button>
   </div>
 
   <!-- صوت الاحتفال (حطي ملف celebration.mp3 في نفس فولدر index.html) -->
